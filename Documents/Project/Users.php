@@ -124,8 +124,9 @@ class Users {
     function registerUser() {
         if ($this->isValid()) {
             try {
+                $hashed_pwd = password_hash($this->password, PASSWORD_DEFAULT);
                 $db = Database::getInstance();
-                $data = "insert into projectUsers (uid, username, email, RegDate, password, role) values (null, '$this->username', '$this->email', NOW(), '$this->password', 'user')";
+                $data = "insert into projectUsers (uid, username, email, RegDate, password, role) values (null, '$this->username', '$this->email', NOW(), '$hashed_pwd', 'user')";
                 $db->querySQL($data);
                 echo $data;
                 return true;
@@ -162,8 +163,17 @@ class Users {
 
     function checkUser($username, $password) {
         $db = Database::getInstance();
-        $data = $db->singleFetch('select * from projectUsers where username = \'' . $username . '\' and password = \'' . $password . '\'');
-        $this->initWith($data->uid, $data->username, $data->email, $data->password, $data->regDate, $data->role);
+
+        $query = $db->singleFetch("select * from projectUsers where username = '$username'");
+        //$query = mysqli_query($db, "select password from projectUsers where username = '$username'");
+        $retrieved_pwd = $query->password;
+        echo $retrieved_pwd;
+        if (!empty($retrieved_pwd)) {
+            if (password_verify($password, $retrieved_pwd)) {
+                $data = $db->singleFetch('select * from projectUsers where username = \'' . $username . '\' and password = \'' . $retrieved_pwd . '\'');
+                $this->initWith($data->uid, $data->username, $data->email, $data->password, $data->regDate, $data->role);
+            }
+        }
     }
 
     function login($username, $password) {
