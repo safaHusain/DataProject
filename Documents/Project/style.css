@@ -137,3 +137,6 @@ form .text h3 a:hover{
 
 /* end of registration form styling */
 
+.err{
+    color:red;
+}

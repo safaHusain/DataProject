@@ -5,11 +5,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
  */
 
-include 'debugging.php';
+session_start();
 
-$lgnObject = new Users();
-$lgnObject->logout();
+ini_set('show_errors', 'On');
+ini_set('display_errors', 1);
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 
-header('Location: index.php');
+function __autoload($className){
+    include_once  $className.'.php';
+    
+    
+}
+
+
 
 ?>

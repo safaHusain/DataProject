@@ -1,7 +1,7 @@
 
         <?php
         
-        include 'header.html';
-        
+        include 'header.php';
+        echo 'home page';
         ?>
 
