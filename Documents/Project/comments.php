@@ -1,13 +1,13 @@
 <?php
 
-include 'config.php';
+include 'Database.php';
 
 if (isset($_POST['post_comment'])) {
 
     $name = $_POST['name'];
     $message = $_POST['message'];
 
-    $sql = "INSERT INTO demo (name, message)
+    $sql = "INSERT INTO commentSystem (name, message)
 		VALUES ('$name', '$message')";
 
     if ($conn->query($sql) === TRUE) {
