@@ -38,6 +38,11 @@ include 'debugging.php';
                   <?php if (isset($_SESSION['role']) && ($_SESSION['role']) == "author") { ?> 
                   <a href="author_panel.php" class="links">Author panel</a> <span class="bar">|</span>
                 <?php } ?>
+                  
+                  <a href="politics_page.php" class="links">Politics</a> <span class="bar">|</span>
+                  <a href="business_page.php" class="links">Business</a> <span class="bar">|</span>
+                  <a href="sports_page.php" class="links">Sports</a> <span class="bar">|</span>
+                  <a href="art_page.php" class="links">Art</a> <span class="bar">|</span>
                    
             </p>
         </div><!--end of header div-->

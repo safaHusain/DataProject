@@ -54,34 +54,47 @@ include 'header.php';
         width: auto;
         align-self: flex-start;
     }
-    
-    #articles-table {
-    table {
+
+    .article-table {
         width: 100%;
         border-collapse: collapse;
-        text-align: center;
     }
 
-    th, td {
-        padding: 8px;
-        border: 1px solid #ddd;
+    .article-table th,
+    .article-table td {
+        padding: 10px;
+        border: 1px solid #ccc;
     }
 
-    th {
-        background-color: #f2f2f2;
+    .article-table th {
+        background-color: #f5f5f5;
         font-weight: bold;
     }
 
-    /* Link styles */
-    a {
-        color: #337ab7;
+    .edit-link,
+    .delete-link {
         text-decoration: none;
+        color: #333;
     }
 
-    a:hover {
+    .edit-link:hover,
+    .delete-link:hover {
         text-decoration: underline;
+        color:#ba001f;
     }
-}
+
+    .error {
+        color: red;
+        font-weight: bold;
+    }
+    
+    h2{
+        color: #ba001f;
+        margin-bottom: 10px;
+        margin-top: 10px; 
+        font-weight: bold;
+    }
+
 
 </style>
 
@@ -151,7 +164,7 @@ if (isset($_POST["saved"])) {
                 $downloadableType = $downloadable['type'];
                 $downloadableSize = $downloadable['size'];
                 //$downloadableData = file_get_contents($downloadable['tmp_name']);
-                
+
                 $download = new Downloads();
                 $download->setArticleId($articleId);
                 //$download->setData($downloadableData);
@@ -253,7 +266,7 @@ if (isset($_POST["published"])) {
     <div class="container">
         <h2>Create News Article</h2>
 
-<?php if (isset($error)): ?>
+        <?php if (isset($error)): ?>
             <p style="color: red;"><?php echo $error; ?></p>
         <?php endif; ?>
 
@@ -305,10 +318,11 @@ if (isset($_POST["published"])) {
 $articles = new Articles();
 $row = $articles->getAllUnpublishedArticles();
 
+echo '<h2>Unpublished articles</h2>';
 // Check if there are any articles
 if (!empty($row)) {
     // Start the HTML table
-    echo '<table width= "100%" border-collapse= "collapse" text-align= "center">';
+    echo '<table class="article-table">';
     echo '<tr><th>Article ID</th><th>Title</th><th>Category</th><th>Edit</th><th>Delete</th></tr>';
 
     // Loop through the articles and display them in the table
@@ -319,10 +333,10 @@ if (!empty($row)) {
         echo '<td>' . $row[$i]->category . '</td>';
 
         // Edit column - link to the edit_article.php page with the article ID
-        echo '<td><a href="edit_article.php?article_id=' . $row[$i]->articleID . '">Edit</a></td>';
+        echo '<td><a class="edit-link" href="edit_article.php?article_id=' . $row[$i]->articleID . '">Edit</a></td>';
 
         // Delete column - link to the delete_article.php page with the article ID
-        echo '<td><a href="delete_article.php?article_id=' . $row[$i]->articleID . '">Delete</a></td>';
+        echo '<td><a class="delete-link" href="delete_article.php?article_id=' . $row[$i]->articleID . '">Delete</a></td>';
 
         echo '</tr>';
     }
@@ -331,8 +345,7 @@ if (!empty($row)) {
     echo '</table>';
 } else {
     echo '<p class="error">' . $query . '</p>';
-      echo '<p class="error"> Oh dear. There was an error</p>';
-      echo '<p class="error">' . mysqli_error($db) .'</p>';
+    echo '<p class="error"> Oh dear. There was an error</p>';
+    echo '<p class="error">' . mysqli_error($db) . '</p>';
 }
-
 ?>
