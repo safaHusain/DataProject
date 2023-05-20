@@ -220,9 +220,10 @@ class Articles {
         return $data;
     }
 
-    function getAllUnpublishedArticles() {
+    function getAllUnpublishedArticlesForAuthor() {
+        $author = $_SESSION['username'];
         $db = Database::getInstance();
-        $data = $db->multiFetch('Select * from projectArticles where status = 0');
+        $data = $db->multiFetch("Select * from projectArticles where status = 0 and publishedBy = '$author'");
         return $data;
     }
     

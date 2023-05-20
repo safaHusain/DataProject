@@ -316,7 +316,7 @@ if (isset($_POST["published"])) {
 //$result = mysqli_query($db, $query);
 
 $articles = new Articles();
-$row = $articles->getAllUnpublishedArticles();
+$row = $articles->getAllUnpublishedArticlesForAuthor();
 
 echo '<h2>Unpublished articles</h2>';
 // Check if there are any articles
@@ -345,7 +345,7 @@ if (!empty($row)) {
     echo '</table>';
 } else {
     echo '<p class="error">' . $query . '</p>';
-    echo '<p class="error"> Oh dear. There was an error</p>';
+    echo '<p class="error"> You dont have any unpublished articles</p>';
     echo '<p class="error">' . mysqli_error($db) . '</p>';
 }
 ?>
