@@ -126,9 +126,9 @@ class Users {
             try {
                 $hashed_pwd = password_hash($this->password, PASSWORD_DEFAULT);
                 $db = Database::getInstance();
-                $data = "insert into projectUsers (uid, username, email, RegDate, password, role) values (null, '$this->username', '$this->email', NOW(), '$hashed_pwd', 'author')";
+                $data = "insert into projectUsers (uid, username, email, RegDate, password, role) values (null, '$this->username', '$this->email', NOW(), '$hashed_pwd', 'user')";
                 $db->querySQL($data);
-                echo $data;
+                //echo $data;
                 return true;
             } catch (Exception $ex) {
                 echo 'exception: ' . $ex;

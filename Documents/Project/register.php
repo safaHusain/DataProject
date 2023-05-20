@@ -78,7 +78,7 @@ if (isset($_POST['submitted'])) {
 
     if ($user->initWithUsername()) {
         if ($user->registerUser()) {
-            echo 'registered successfully';
+            echo '<p style="color:green"> registered successfully </p>';
         } else {
             echo '<p style="color:red"> registration not successfull </p>';
         }
