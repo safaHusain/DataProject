@@ -11,5 +11,3 @@ $lgnObject = new Users();
 $lgnObject->logout();
 
 header('Location: index.php');
-
-?>

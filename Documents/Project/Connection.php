@@ -10,13 +10,15 @@
  *
  * @author safa
  */
-class Connection {
-        protected $dbc = NULL;
-    
-    public function getConnection() {
+class Connection
+{
+    protected $dbc = NULL;
+
+    public function getConnection()
+    {
 
         if ($this->dbc == NULL)
-            $this->dbc = mysqli_connect('localhost', 'u201902301', 'u201902301', 'db201902301');
+            $this->dbc = mysqli_connect('localhost', 'u201902206', 'u201902206', 'db201902206');
 
         if (mysqli_connect_errno()) {
             printf("Connect failed: %s\n", mysqli_connect_error());
@@ -28,6 +30,6 @@ class Connection {
 
     public function closeDB()
     {
-         mysqli_close($this->dbc);  
+        mysqli_close($this->dbc);
     }
 }

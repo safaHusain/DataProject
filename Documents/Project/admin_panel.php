@@ -7,4 +7,3 @@
 include 'header.php';
 
 echo 'admin panel';
-?>

@@ -1,4 +1,3 @@
-
 <?php
 
 include 'header.php';
@@ -38,7 +37,7 @@ include 'header.php';
 
     .read-more-link:hover {
         text-decoration: underline;
-        color:#ba001f;
+        color: #ba001f;
     }
 
     .article-divider {
@@ -47,11 +46,11 @@ include 'header.php';
         border-top: 1px solid #ccc;
     }
 
-    #main{
-        width:100%;
-        clear:both;
-        padding-bottom:30px;
-        padding-top:30px;
+    #main {
+        width: 100%;
+        clear: both;
+        padding-bottom: 30px;
+        padding-top: 30px;
         margin-left: 30px;
     }
 </style>

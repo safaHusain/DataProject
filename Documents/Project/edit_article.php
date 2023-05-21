@@ -70,7 +70,8 @@ echo $article_id;
             text-align: center;
         }
 
-        th, td {
+        th,
+        td {
             padding: 8px;
             border: 1px solid #ddd;
         }
@@ -90,7 +91,6 @@ echo $article_id;
             text-decoration: underline;
         }
     }
-
 </style>
 
 
@@ -130,7 +130,6 @@ if (isset($_POST["saved"])) {
             $download->setSize($downloadableSize);
             $download->setType($downloadableType);
             $download->updateDownloadable();
-
         }
     }
 }
@@ -154,7 +153,7 @@ if (isset($_POST["published"])) {
         $articleId = $article->publishSavedArticle();
 
         $saved = "Article published successfully!";
-        
+
         $downloadable = $_FILES['downloadable'];
         // Process the downloadable file if provided
         if (!empty($downloadable['name'])) {
@@ -170,7 +169,6 @@ if (isset($_POST["published"])) {
             $download->setSize($downloadableSize);
             $download->setType($downloadableType);
             $download->updateDownloadable();
-
         }
     }
 }
@@ -180,11 +178,11 @@ if (isset($_POST["published"])) {
     <div class="container">
         <h2>Edit News Article</h2>
 
-        <?php if (isset($error)): ?>
+        <?php if (isset($error)) : ?>
             <p style="color: red;"><?php echo $error; ?></p>
         <?php endif; ?>
 
-        <?php if (isset($saved)): ?>
+        <?php if (isset($saved)) : ?>
             <p style="color: green;"><?php echo $saved; ?></p>
         <?php endif; ?>
 
