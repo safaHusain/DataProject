@@ -10,7 +10,8 @@
  *
  * @author safa
  */
-class Downloads {
+class Downloads
+{
 
     private $articleId;
     private $name;
@@ -18,29 +19,30 @@ class Downloads {
     private $size;
     private $data;
 
-//    public $dbc = null;
-//
-//    public function __construct() {
-//        $this->getDBConnection();
-//    }
-//
-//    private function getDBConnection() {
-//        include_once "Connection.php";
-//
-//        try {
-//            if ($this->dbc == null) {
-//                $db = new Connection();
-//                $this->dbc = $db->getConnection();
-//            }
-//            return $this->dbc;
-//        } catch (Exception $e) {
-//            echo 'Caught exception: ' . $e->getMessage();
-//            return null;
-//        }
-//    }
+    //    public $dbc = null;
+    //
+    //    public function __construct() {
+    //        $this->getDBConnection();
+    //    }
+    //
+    //    private function getDBConnection() {
+    //        include_once "Connection.php";
+    //
+    //        try {
+    //            if ($this->dbc == null) {
+    //                $db = new Connection();
+    //                $this->dbc = $db->getConnection();
+    //            }
+    //            return $this->dbc;
+    //        } catch (Exception $e) {
+    //            echo 'Caught exception: ' . $e->getMessage();
+    //            return null;
+    //        }
+    //    }
 
 
-    public function initWith($articleId, $name, $type, $size, $data) {
+    public function initWith($articleId, $name, $type, $size, $data)
+    {
         $this->articleId = $articleId;
         $this->name = $name;
         $this->type = $type;
@@ -48,57 +50,69 @@ class Downloads {
         $this->data = $data;
     }
 
-    function initWithId($id) {
+    function initWithId($id)
+    {
         $db = Database::getInstance();
         $data = $db->singleFetch('select * from projectDownloads where article_id = ' . $id);
         $this->initWith($data->articleId, $data->name, $data->type, $data->size, $data->data);
     }
 
-    public function getArticleId() {
+    public function getArticleId()
+    {
         return $this->articleId;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function getType() {
+    public function getType()
+    {
         return $this->type;
     }
 
-    public function getSize() {
+    public function getSize()
+    {
         return $this->size;
     }
 
-    public function getData() {
+    public function getData()
+    {
         return $this->data;
     }
 
-    public function setArticleId($articleId) {
+    public function setArticleId($articleId)
+    {
         $this->articleId = $articleId;
     }
 
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
-    public function setType($type) {
+    public function setType($type)
+    {
         $this->type = $type;
     }
 
-    public function setSize($size) {
+    public function setSize($size)
+    {
         $this->size = $size;
     }
 
-    public function setData($data) {
+    public function setData($data)
+    {
         $this->data = $data;
     }
 
-    public function saveDownload() {
+    public function saveDownload()
+    {
 
         $db = Database::getInstance();
         $query = "INSERT INTO projectDownloads (article_id, name, type, size) "
-                . "VALUES ('$this->articleId', '$this->name', '$this->type', '$this->size')";
+            . "VALUES ('$this->articleId', '$this->name', '$this->type', '$this->size')";
 
         if ($db->querySQL($query)) {
             return true;
@@ -107,11 +121,12 @@ class Downloads {
             return false;
         }
     }
-    
-    public function updateDownloadable() {
+
+    public function updateDownloadable()
+    {
         $db = Database::getInstance();
         $query = "update projectDownloads set name = '$this->name' , type = '$this->type' , size = '$this->size'"
-                . " where article_id = '$this->articleId'";
+            . " where article_id = '$this->articleId'";
         //echo $query;
 
         if ($db->querySQL($query)) {
@@ -122,7 +137,8 @@ class Downloads {
         }
     }
 
-    public function deleteDownload() {
+    public function deleteDownload()
+    {
         try {
             $db = Database::getInstance();
             $data = "delete from projectDownloads where article_id = '$this->articleId'";
@@ -133,5 +149,4 @@ class Downloads {
             return false;
         }
     }
-
 }

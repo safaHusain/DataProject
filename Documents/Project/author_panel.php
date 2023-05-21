@@ -80,22 +80,20 @@ include 'header.php';
     .edit-link:hover,
     .delete-link:hover {
         text-decoration: underline;
-        color:#ba001f;
+        color: #ba001f;
     }
 
     .error {
         color: red;
         font-weight: bold;
     }
-    
-    h2{
+
+    h2 {
         color: #ba001f;
         margin-bottom: 10px;
-        margin-top: 10px; 
+        margin-top: 10px;
         font-weight: bold;
     }
-
-
 </style>
 
 
@@ -266,11 +264,11 @@ if (isset($_POST["published"])) {
     <div class="container">
         <h2>Create News Article</h2>
 
-        <?php if (isset($error)): ?>
+        <?php if (isset($error)) : ?>
             <p style="color: red;"><?php echo $error; ?></p>
         <?php endif; ?>
 
-        <?php if (isset($saved)): ?>
+        <?php if (isset($saved)) : ?>
             <p style="color: green;"><?php echo $saved; ?></p>
         <?php endif; ?>
 

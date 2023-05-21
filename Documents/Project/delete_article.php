@@ -77,7 +77,6 @@ if (isset($_POST['submit'])) {
         //delete article 
         $article->deleteArticle();
         $deleted = "Article deleted successfully";
-        
     } else {
         $notDeleted = "Article deletion not confirmed";
     }
@@ -88,21 +87,21 @@ if (isset($_POST['submit'])) {
 
 
     <form method="post" class="form-container">
-<?php if (isset($error)): ?>
+        <?php if (isset($error)) : ?>
             <p style="color: red;"><?php echo $error; ?></p>
         <?php endif; ?>
 
-        <?php if (isset($deleted)): ?>
+        <?php if (isset($deleted)) : ?>
             <p style="color: green;"><?php echo $deleted; ?></p>
         <?php endif; ?>
 
-        <?php if (isset($notDeleted)): ?>
+        <?php if (isset($notDeleted)) : ?>
             <p style="color: red;"><?php echo $notDeleted; ?></p>
         <?php endif; ?>
         <br />
         <h2 class="form-title">Delete News Article</h2>
         <h2>Title: <?php echo $article->getTitle(); ?></h2>
-        <p>Are you sure you want to delete this article? <br/><br/>
+        <p>Are you sure you want to delete this article? <br /><br />
             <label class="form-radio">
                 <input type="radio" name="sure" value="Yes" /> Yes
             </label>
@@ -110,10 +109,9 @@ if (isset($_POST['submit'])) {
                 <input type="radio" name="sure" value="No" /> No
             </label>
         </p>
-        <input type="hidden" name="id" value="<?php echo $article_id; ?>"/>
+        <input type="hidden" name="id" value="<?php echo $article_id; ?>" />
         <p><input type="submit" name="submit" value="Delete" class="form-submit" /></p>
 
     </form>
 
 </div>
-

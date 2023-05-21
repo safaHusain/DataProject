@@ -3,36 +3,34 @@ include 'header.php';
 ?>
 
 <script>
-            function isValid(obj){
-                var errField = obj.id + 'Err';
-                var valid = false;
-                
-                var value = obj.value.trim();
-                
-                if (value == ''){
-                    obj.style.backgroundColor = "yellow";
-                    document.getElementById(errField).innerHTML = obj.id + ' field may not be blank';
-                    document.getElementById('sub').disabled = true;
-                }else{
-                    obj.style.backgroundColor = "#fff";
-                    document.getElementById(errField).innerHTML = '';
-                    valid = true;
-                    enableButton();
-                }
-                
-                return valid;
-            }
-            
-            function enableButton(){
-                if(document.getElementById('Username').value != ''
-                    && document.getElementById('Password').value != ''){
-                    
-                        document.getElementById('sub').disabled = false;
-                    }
-            }
-            
-             
-        </script>
+    function isValid(obj) {
+        var errField = obj.id + 'Err';
+        var valid = false;
+
+        var value = obj.value.trim();
+
+        if (value == '') {
+            obj.style.backgroundColor = "yellow";
+            document.getElementById(errField).innerHTML = obj.id + ' field may not be blank';
+            document.getElementById('sub').disabled = true;
+        } else {
+            obj.style.backgroundColor = "#fff";
+            document.getElementById(errField).innerHTML = '';
+            valid = true;
+            enableButton();
+        }
+
+        return valid;
+    }
+
+    function enableButton() {
+        if (document.getElementById('Username').value != '' &&
+            document.getElementById('Password').value != '') {
+
+            document.getElementById('sub').disabled = false;
+        }
+    }
+</script>
 
 <div id="main">
     <div class="wrapper">
@@ -40,11 +38,11 @@ include 'header.php';
         <form action="login.php" method="post">
             <div class="input-box">
                 <input type="text" id="Username" name="Username" placeholder="Enter your username" autofocus onblur="isValid(this);" required>
-                <Label id = "UsernameErr" style="color:red">
+                <Label id="UsernameErr" style="color:red">
             </div>
             <div class="input-box">
                 <input type="password" id="Password" name="Password" placeholder="Enter your password" autofocus onblur="isValid(this);" required>
-                <Label id = "PasswordErr" style="color:red">
+                <Label id="PasswordErr" style="color:red">
             </div>
             <div class="input-box button">
                 <input type="Submit" id="sub" name="submitted" value="Login" disabled>

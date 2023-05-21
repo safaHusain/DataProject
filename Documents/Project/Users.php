@@ -10,7 +10,8 @@
  *
  * @author safa
  */
-class Users {
+class Users
+{
 
     private $uid;
     private $username;
@@ -19,7 +20,8 @@ class Users {
     private $password;
     private $role;
 
-    function __construct() {
+    function __construct()
+    {
         $this->uid = null;
         $this->username = null;
         $this->email = null;
@@ -28,61 +30,75 @@ class Users {
         $this->role = null;
     }
 
-    public function setUid($uid) {
+    public function setUid($uid)
+    {
         $this->uid = $uid;
     }
 
-    public function setUsername($username) {
+    public function setUsername($username)
+    {
         $this->username = $username;
     }
 
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
     }
 
-    public function setRegDate($regDate): void {
+    public function setRegDate($regDate): void
+    {
         $this->regDate = $regDate;
     }
 
-    public function setRole($role): void {
+    public function setRole($role): void
+    {
         $this->role = $role;
     }
 
-    public function setPassword($password) {
+    public function setPassword($password)
+    {
         $this->password = $password;
     }
 
-    public function getUid() {
+    public function getUid()
+    {
         return $this->uid;
     }
 
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->username;
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function getRegDate() {
+    public function getRegDate()
+    {
         return $this->regDate;
     }
 
-    public function getRole() {
+    public function getRole()
+    {
         return $this->role;
     }
 
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->password;
     }
 
-    function initWithUid($uid) {
+    function initWithUid($uid)
+    {
         $db = Database::getInstance();
         $data = $db->singleFetch('select * from projectUsers where uid = ' . $uid);
         $this->initWith($data->uid, $data->username, $data->email, $data->password, $data->regDate, $data->role);
     }
 
-    function initWithUsername() {
+    function initWithUsername()
+    {
         $db = Database::getInstance();
         $data = $db->singleFetch('select * from projectUsers where username = \'' . $this->username . '\'');
         if ($data != null) {
@@ -91,7 +107,8 @@ class Users {
         return true;
     }
 
-    function initWith($uid, $username, $email, $password, $regDate, $role) {
+    function initWith($uid, $username, $email, $password, $regDate, $role)
+    {
         $this->uid = $uid;
         $this->username = $username;
         $this->email = $email;
@@ -100,7 +117,8 @@ class Users {
         $this->role = $role;
     }
 
-    public function isValid() {
+    public function isValid()
+    {
         $errors = true;
         if (empty($this->username)) {
             $errors = false;
@@ -121,7 +139,8 @@ class Users {
         return $errors;
     }
 
-    function registerUser() {
+    function registerUser()
+    {
         if ($this->isValid()) {
             try {
                 $hashed_pwd = password_hash($this->password, PASSWORD_DEFAULT);
@@ -139,7 +158,8 @@ class Users {
         }
     }
 
-    function updateDB() {
+    function updateDB()
+    {
         if ($this->isValid()) {
 
             $db = Database::getInstance();
@@ -150,7 +170,8 @@ class Users {
         return false;
     }
 
-    function deleteUser() {
+    function deleteUser()
+    {
         try {
             $db = Database::getInstance();
             $data = $db->querySQL('delete from projectUsers where uid = ' . $this->uid);
@@ -161,7 +182,8 @@ class Users {
         }
     }
 
-    function checkUser($username, $password) {
+    function checkUser($username, $password)
+    {
         $db = Database::getInstance();
 
         $query = $db->singleFetch("select * from projectUsers where username = '$username'");
@@ -176,7 +198,8 @@ class Users {
         }
     }
 
-    function login($username, $password) {
+    function login($username, $password)
+    {
         try {
             $this->checkUser($username, $password);
             if ($this->getUid() != null) {
@@ -194,13 +217,11 @@ class Users {
         return false;
     }
 
-    function logout() {
+    function logout()
+    {
         $_SESSION['uid'] = '';
         $_SESSION['username'] = '';
         $_SESSION['role'] = '';
         session_destroy();
     }
-
 }
-
-?>
